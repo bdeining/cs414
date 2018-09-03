@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="edu.colostate.cs.cs414.a1.bdeining.CompanyTest" time="0.675" tests="24" errors="0" skipped="0" failures="1">
+  <properties>
+    <property name="gopherProxySet" value="false"/>
+    <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="java.specification.version" value="1.8"/>
+    <property name="sun.cpu.isalist" value=""/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.class.path" value="/workspace/projects/cs414/target/test-classes:/workspace/projects/cs414/target/classes:/Users/bdeininger/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.1.0/junit-jupiter-engine-5.1.0.jar:/Users/bdeininger/.m2/repository/org/apiguardian/apiguardian-api/1.0.0/apiguardian-api-1.0.0.jar:/Users/bdeininger/.m2/repository/org/junit/platform/junit-platform-engine/1.1.0/junit-platform-engine-1.1.0.jar:/Users/bdeininger/.m2/repository/org/junit/platform/junit-platform-commons/1.1.0/junit-platform-commons-1.1.0.jar:/Users/bdeininger/.m2/repository/org/opentest4j/opentest4j/1.0.0/opentest4j-1.0.0.jar:/Users/bdeininger/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.1.0/junit-jupiter-api-5.1.0.jar:/Users/bdeininger/.m2/repository/org/mockito/mockito-core/2.21.0/mockito-core-2.21.0.jar:/Users/bdeininger/.m2/repository/net/bytebuddy/byte-buddy/1.8.15/byte-buddy-1.8.15.jar:/Users/bdeininger/.m2/repository/net/bytebuddy/byte-buddy-agent/1.8.15/byte-buddy-agent-1.8.15.jar:/Users/bdeininger/.m2/repository/org/objenesis/objenesis/2.6/objenesis-2.6.jar:/Users/bdeininger/.m2/repository/org/junit/platform/junit-platform-runner/1.2.0/junit-platform-runner-1.2.0.jar:/Users/bdeininger/.m2/repository/org/junit/platform/junit-platform-launcher/1.2.0/junit-platform-launcher-1.2.0.jar:/Users/bdeininger/.m2/repository/org/junit/platform/junit-platform-suite-api/1.2.0/junit-platform-suite-api-1.2.0.jar:/Users/bdeininger/.m2/repository/junit/junit/4.12/junit-4.12.jar:/Users/bdeininger/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.vendor.url" value="http://java.oracle.com/"/>
+    <property name="user.timezone" value=""/>
+    <property name="java.vm.specification.version" value="1.8"/>
+    <property name="os.name" value="Mac OS X"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/jre/lib"/>
+    <property name="sun.java.command" value="/workspace/projects/cs414/target/surefire/surefirebooter7983465077692541099.jar /workspace/projects/cs414/target/surefire 2018-09-03T13-25-40_547-jvmRun1 surefire5502455566590597605tmp surefire_05471760972038815929tmp"/>
+    <property name="surefire.test.class.path" value="/workspace/projects/cs414/target/test-classes:/workspace/projects/cs414/target/classes:/Users/bdeininger/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.1.0/junit-jupiter-engine-5.1.0.jar:/Users/bdeininger/.m2/repository/org/apiguardian/apiguardian-api/1.0.0/apiguardian-api-1.0.0.jar:/Users/bdeininger/.m2/repository/org/junit/platform/junit-platform-engine/1.1.0/junit-platform-engine-1.1.0.jar:/Users/bdeininger/.m2/repository/org/junit/platform/junit-platform-commons/1.1.0/junit-platform-commons-1.1.0.jar:/Users/bdeininger/.m2/repository/org/opentest4j/opentest4j/1.0.0/opentest4j-1.0.0.jar:/Users/bdeininger/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.1.0/junit-jupiter-api-5.1.0.jar:/Users/bdeininger/.m2/repository/org/mockito/mockito-core/2.21.0/mockito-core-2.21.0.jar:/Users/bdeininger/.m2/repository/net/bytebuddy/byte-buddy/1.8.15/byte-buddy-1.8.15.jar:/Users/bdeininger/.m2/repository/net/bytebuddy/byte-buddy-agent/1.8.15/byte-buddy-agent-1.8.15.jar:/Users/bdeininger/.m2/repository/org/objenesis/objenesis/2.6/objenesis-2.6.jar:/Users/bdeininger/.m2/repository/org/junit/platform/junit-platform-runner/1.2.0/junit-platform-runner-1.2.0.jar:/Users/bdeininger/.m2/repository/org/junit/platform/junit-platform-launcher/1.2.0/junit-platform-launcher-1.2.0.jar:/Users/bdeininger/.m2/repository/org/junit/platform/junit-platform-suite-api/1.2.0/junit-platform-suite-api-1.2.0.jar:/Users/bdeininger/.m2/repository/junit/junit/4.12/junit-4.12.jar:/Users/bdeininger/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="/Users/bdeininger"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.home" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/jre"/>
+    <property name="basedir" value="/workspace/projects/cs414"/>
+    <property name="file.separator" value="/"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.CGraphicsEnvironment"/>
+    <property name="surefire.real.class.path" value="/workspace/projects/cs414/target/surefire/surefirebooter7983465077692541099.jar:/Users/bdeininger/.m2/repository/org/jacoco/org.jacoco.agent/0.8.1/org.jacoco.agent-0.8.1-runtime.jar"/>
+    <property name="sun.boot.class.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/jre/classes"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="1.8.0_181-b13"/>
+    <property name="user.name" value="bdeininger"/>
+    <property name="path.separator" value=":"/>
+    <property name="os.version" value="10.12.6"/>
+    <property name="java.endorsed.dirs" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/jre/lib/endorsed"/>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="localRepository" value="/Users/bdeininger/.m2/repository"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+    <property name="java.io.tmpdir" value="/var/folders/_r/jy_wfdkx4cv95wc50fgsgtmm0000gn/T/"/>
+    <property name="java.version" value="1.8.0_181"/>
+    <property name="user.dir" value="/workspace/projects/cs414"/>
+    <property name="os.arch" value="x86_64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="java.awt.printerjob" value="sun.lwawt.macosx.CPrinterJob"/>
+    <property name="sun.os.patch.level" value="unknown"/>
+    <property name="java.library.path" value="/Users/bdeininger/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.version" value="25.181-b13"/>
+    <property name="java.ext.dirs" value="/Users/bdeininger/Library/Java/Extensions:/Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/jre/lib/ext:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
+    <property name="java.class.version" value="52.0"/>
+  </properties>
+  <testcase name="testAssignFinishedProject" classname="edu.colostate.cs.cs414.a1.bdeining.CompanyTest" time="0.581"/>
+  <testcase name="testAssignActiveProject" classname="edu.colostate.cs.cs414.a1.bdeining.CompanyTest" time="0"/>
+  <testcase name="testCreateProjectNullProjectName" classname="edu.colostate.cs.cs414.a1.bdeining.CompanyTest" time="0.002"/>
+  <testcase name="testCompaniesNotEqual" classname="edu.colostate.cs.cs414.a1.bdeining.CompanyTest" time="0.002"/>
+  <testcase name="testAssignAlreadyAssignedWorker" classname="edu.colostate.cs.cs414.a1.bdeining.CompanyTest" time="0.002"/>
+  <testcase name="testAssignOverloadedWorker" classname="edu.colostate.cs.cs414.a1.bdeining.CompanyTest" time="0.007"/>
+  <testcase name="testCompanyNameBlankCharacter" classname="edu.colostate.cs.cs414.a1.bdeining.CompanyTest" time="0.001"/>
+  <testcase name="testEmptyCompanyName" classname="edu.colostate.cs.cs414.a1.bdeining.CompanyTest" time="0.001"/>
+  <testcase name="testGetName" classname="edu.colostate.cs.cs414.a1.bdeining.CompanyTest" time="0.001"/>
+  <testcase name="testCreateProject" classname="edu.colostate.cs.cs414.a1.bdeining.CompanyTest" time="0.002"/>
+  <testcase name="testAssignNullWorker" classname="edu.colostate.cs.cs414.a1.bdeining.CompanyTest" time="0.041"/>
+  <testcase name="testNullCompanyName" classname="edu.colostate.cs.cs414.a1.bdeining.CompanyTest" time="0.001"/>
+  <testcase name="testAddWorkerNullWorker" classname="edu.colostate.cs.cs414.a1.bdeining.CompanyTest" time="0.001"/>
+  <testcase name="testCreateProjectNullQualificationSet" classname="edu.colostate.cs.cs414.a1.bdeining.CompanyTest" time="0.001"/>
+  <testcase name="testCreateProjectInvalidProjectName" classname="edu.colostate.cs.cs414.a1.bdeining.CompanyTest" time="0.001"/>
+  <testcase name="testAddWorker" classname="edu.colostate.cs.cs414.a1.bdeining.CompanyTest" time="0"/>
+  <testcase name="testAssignUnhelpfulWorker" classname="edu.colostate.cs.cs414.a1.bdeining.CompanyTest" time="0.012">
+    <failure message="expected: &lt;false&gt; but was: &lt;true&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: <false> but was: <true>
+	at edu.colostate.cs.cs414.a1.bdeining.CompanyTest.testAssignUnhelpfulWorker(CompanyTest.java:201)
+]]></failure>
+  </testcase>
+  <testcase name="testAssignUnavailableWorker" classname="edu.colostate.cs.cs414.a1.bdeining.CompanyTest" time="0.001"/>
+  <testcase name="testCompaniesNotEqualNotACompany" classname="edu.colostate.cs.cs414.a1.bdeining.CompanyTest" time="0"/>
+  <testcase name="testCreateProjectEmptyQualificationSet" classname="edu.colostate.cs.cs414.a1.bdeining.CompanyTest" time="0"/>
+  <testcase name="testAssign" classname="edu.colostate.cs.cs414.a1.bdeining.CompanyTest" time="0"/>
+  <testcase name="testAssignNullProject" classname="edu.colostate.cs.cs414.a1.bdeining.CompanyTest" time="0"/>
+  <testcase name="testAddWorkerWithAssignedProject" classname="edu.colostate.cs.cs414.a1.bdeining.CompanyTest" time="0"/>
+  <testcase name="testCompaniesEqual" classname="edu.colostate.cs.cs414.a1.bdeining.CompanyTest" time="0"/>
+</testsuite>
