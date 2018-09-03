@@ -199,16 +199,19 @@ public class CompanyTest {
         Project project5 = company.createProject("aProject5", qualifications, ProjectSize.LARGE);
         Worker worker = new Worker("Bob", qualifications);
         company.addToAvailableWorkerPool(worker);
-        company.assign(worker, project);
-        company.assign(worker, project2);
-        company.assign(worker, project3);
-        company.assign(worker, project4);
+        boolean result = company.assign(worker, project);
+        assertTrue(result);
+        result = company.assign(worker, project2);
+        assertTrue(result);
+        result = company.assign(worker, project3);
+        assertTrue(result);
+        result = company.assign(worker, project4);
+        assertTrue(result);
         project.setStatus(ProjectStatus.ACTIVE);
         project2.setStatus(ProjectStatus.ACTIVE);
         project3.setStatus(ProjectStatus.ACTIVE);
         project4.setStatus(ProjectStatus.ACTIVE);
-        project5.setStatus(ProjectStatus.ACTIVE);
-        boolean result = company.assign(worker, project5);
+        result = company.assign(worker, project5);
         assertFalse(result);
     }
 
@@ -247,6 +250,22 @@ public class CompanyTest {
         assertTrue(result);
         assertFalse(project.getWorkers().contains(worker));
         assertFalse(company.getAssignedWorkers().contains(worker));
+    }
+
+    @Test
+    public void testUnassignSuspendProject() throws Exception {
+        Qualification qualification = new Qualification("somethingHelpful");
+        Set<Qualification> qualifications = Collections.singleton(qualification);
+        Project project = company.createProject("aProject", qualifications, ProjectSize.LARGE);
+        Worker worker = new Worker("Bob", qualifications);
+        company.addToAvailableWorkerPool(worker);
+        company.assign(worker, project);
+        project.setStatus(ProjectStatus.ACTIVE);
+        boolean result =  company.unassign(worker, project);
+        assertTrue(result);
+        assertFalse(project.getWorkers().contains(worker));
+        assertFalse(company.getAssignedWorkers().contains(worker));
+        assertEquals(project.getStatus(), ProjectStatus.SUSPENDED);
     }
 
     @Test
@@ -321,6 +340,21 @@ public class CompanyTest {
         boolean result = company.start(project);
         assertTrue(result);
         assertEquals(project.getStatus(), ProjectStatus.ACTIVE);
+    }
+
+    @Test
+    public void testStartUnmetQualifications() throws Exception {
+        Qualification qualification = new Qualification("somethingHelpful");
+        Qualification workerQualification = new Qualification("somethingUnHelpful");
+        Set<Qualification> qualifications = Collections.singleton(qualification);
+        Set<Qualification> workerQualifications = Collections.singleton(workerQualification);
+        Project project = company.createProject("aProject", workerQualifications, ProjectSize.LARGE);
+        Worker worker = new Worker("Bob", qualifications);
+        company.addToAvailableWorkerPool(worker);
+        company.assign(worker, project);
+        boolean result = company.start(project);
+        assertFalse(result);
+        assertEquals(project.getStatus(), ProjectStatus.PLANNED);
     }
 
     @Test

@@ -223,7 +223,7 @@ public class Company {
     public void unassignAll(Worker w) {
         Set<Project> projects = w.getProjects();
         for (Project p : projects) {
-            p.getWorkers().remove(w);
+            unassign(w, p);
         }
     }
 

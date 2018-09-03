@@ -32,8 +32,6 @@ public class Qualification {
     public int hashCode() {
         int result = 17;
         result = 31 * result + description.hashCode();
-        result = 31 * result + workers.hashCode();
-        result = 31 * result + projects.hashCode();
         return result;
     }
 

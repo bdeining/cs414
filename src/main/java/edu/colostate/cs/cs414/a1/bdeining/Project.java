@@ -60,10 +60,6 @@ public class Project {
     public int hashCode() {
         int result = 17;
         result = 31 * result + name.hashCode();
-        result = 31 * result + workers.hashCode();
-        result = 31 * result + projectSize.hashCode();
-        result = 31 * result + projectStatus.hashCode();
-        result = 31 * result + qualifications.hashCode();
         return result;
     }
 
