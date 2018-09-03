@@ -3,6 +3,7 @@ package edu.colostate.cs.cs414.a1.bdeining;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Project {
 
@@ -57,7 +58,13 @@ public class Project {
 
     @Override
     public int hashCode() {
-        return 0;
+        int result = 17;
+        result = 31 * result + name.hashCode();
+        result = 31 * result + workers.hashCode();
+        result = 31 * result + projectSize.hashCode();
+        result = 31 * result + projectStatus.hashCode();
+        result = 31 * result + qualifications.hashCode();
+        return result;
     }
 
     /**
@@ -98,9 +105,17 @@ public class Project {
      * @return the Set of project qualifications not met by its assigned workers
      */
     public Set<Qualification> missingQualifications() {
+        Set<Qualification> unMetQualifications = new HashSet<>();
 
+        Set<Qualification> workerQualifications = workers.stream().flatMap(worker -> worker.getQualification().stream()).collect(Collectors.toSet());
 
-        return Collections.emptySet();
+        for (Qualification qualification : qualifications) {
+            if (!workerQualifications.contains(qualification)) {
+                unMetQualifications.add(qualification);
+            }
+        }
+
+        return unMetQualifications;
     }
 
     /**
@@ -117,7 +132,14 @@ public class Project {
             throw new NullPointerException("Worker is null");
         }
 
-        return true;
+        Set<Qualification> unmetQualifications = missingQualifications();
+        for (Qualification qualification : w.getQualification()) {
+            if (unmetQualifications.contains(qualification)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public Set<Worker> getWorkers() {

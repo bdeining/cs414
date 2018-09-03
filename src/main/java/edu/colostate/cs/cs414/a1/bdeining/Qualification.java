@@ -30,7 +30,11 @@ public class Qualification {
 
     @Override
     public int hashCode() {
-        return 0;
+        int result = 17;
+        result = 31 * result + description.hashCode();
+        result = 31 * result + workers.hashCode();
+        result = 31 * result + projects.hashCode();
+        return result;
     }
 
     /**

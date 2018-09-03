@@ -34,7 +34,8 @@ public class Worker {
         this.name = name;
         this.salary = 0;
         this.projects = new HashSet<>();
-        this.qualifications = new HashSet<>();
+        this.qualifications = qs;
+        this.projects = new HashSet<>();
     }
 
     public String getName() {
@@ -107,7 +108,7 @@ public class Worker {
     }
 
     public int getProjectLoad(ProjectSize size) {
-        return 0;
+        return projects.size();
     }
 
     /**
@@ -150,11 +151,12 @@ public class Worker {
     }
 
     public Set<Project> getProjects() {
-        return Collections.emptySet();
+        return projects;
     }
 
     public boolean addProject(Project p) {
-        return true;
+        // TODO : Validation
+        return projects.add(p);
     }
 
     public void setCompany(Company c) {

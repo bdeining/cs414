@@ -199,12 +199,15 @@ public class Company {
         }
 
         p.getWorkers().remove(w);
+        w.getProjects().remove(p);
 
         if (w.getProjects().isEmpty()) {
             assignedWorkers.remove(w);
         }
 
-        // If the qualification requirements of an ACTIVE project are no longer met, that project is marked as SUSPENDED
+        if (p.getStatus().equals(ProjectStatus.ACTIVE) && !p.missingQualifications().isEmpty()) {
+            p.setStatus(ProjectStatus.SUSPENDED);
+        }
 
         return true;
     }
@@ -238,9 +241,11 @@ public class Company {
             throw new NullPointerException("Project was null");
         }
 
-        //Starts a PLANNED or SUSPENDED project as long as the project's qualification requirements are all satisfied
-
         if (p.getStatus().equals(ProjectStatus.ACTIVE) || p.getStatus().equals(ProjectStatus.FINISHED)) {
+            return false;
+        }
+
+        if (!p.missingQualifications().isEmpty()) {
             return false;
         }
 
@@ -274,6 +279,7 @@ public class Company {
             }
         }
 
+        p.setStatus(ProjectStatus.FINISHED);
         return true;
     }
 }
