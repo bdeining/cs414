@@ -9,11 +9,12 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+
 import static org.mockito.Mockito.when;
 
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -225,7 +226,93 @@ public class CompanyTest {
         company.assign(worker, project);
         boolean result =  company.unassign(worker, project);
         assertTrue(result);
+        assertFalse(project.getWorkers().contains(worker));
+        assertFalse(company.getAssignedWorkers().contains(worker));
+    }
 
+    @Test
+    public void testUnassignMultipleProjects() throws Exception {
+        Set<Qualification> qualifications = Collections.singleton(mock(Qualification.class));
+        Project project = company.createProject("aProject", qualifications, ProjectSize.LARGE);
+        Project project2 = company.createProject("aProject2", qualifications, ProjectSize.LARGE);
+        Worker worker = mock(Worker.class);
+        Set<Project> projects = new HashSet<>();
+        projects.add(project);
+        projects.add(project2);
+        company.addToAvailableWorkerPool(worker);
+        company.assign(worker, project);
+        company.assign(worker, project2);
+        when(worker.getProjects()).thenReturn(projects);
+        boolean result =  company.unassign(worker, project);
+        assertTrue(result);
+        assertFalse(project.getWorkers().contains(worker));
+        assertTrue(company.getAssignedWorkers().contains(worker));
+    }
+
+    @Test
+    public void testUnassignWorkerNotOnProject() throws Exception {
+        Set<Qualification> qualifications = Collections.singleton(mock(Qualification.class));
+        Project project = company.createProject("aProject", qualifications, ProjectSize.LARGE);
+        Worker worker = mock(Worker.class);
+        company.addToAvailableWorkerPool(worker);
+        boolean result =  company.unassign(worker, project);
+        assertFalse(result);
+    }
+
+    @Test
+    public void testUnassignNullProject() {
+        assertThrows(NullPointerException.class, () -> company.unassign(mock(Worker.class), null));
+    }
+
+    @Test
+    public void testUnassignNullWorker() {
+        assertThrows(NullPointerException.class, () -> company.unassign(null, mock(Project.class)));
+    }
+
+    @Test
+    public void testHashCode() {
+        assertNotEquals(company.hashCode(), 0);
+    }
+
+    @Test
+    public void testUnassignAll() throws Exception {
+        Set<Qualification> qualifications = Collections.singleton(mock(Qualification.class));
+        Project project = company.createProject("aProject", qualifications, ProjectSize.LARGE);
+        Project project2 = company.createProject("aProject2", qualifications, ProjectSize.LARGE);
+        Worker worker = mock(Worker.class);
+        Set<Project> projects = new HashSet<>();
+        projects.add(project);
+        projects.add(project2);
+        company.addToAvailableWorkerPool(worker);
+        company.assign(worker, project);
+        company.assign(worker, project2);
+        when(worker.getProjects()).thenReturn(projects);
+        company.unassignAll(worker);
+        assertTrue(project.getWorkers().isEmpty());
+        assertTrue(project2.getWorkers().isEmpty());
+    }
+
+    @Test
+    public void testStart() throws Exception {
+        Set<Qualification> qualifications = Collections.singleton(mock(Qualification.class));
+        Project project = company.createProject("aProject", qualifications, ProjectSize.LARGE);
+        boolean result = company.start(project);
+        assertTrue(result);
+        assertEquals(project.getStatus(), ProjectStatus.ACTIVE);
+    }
+
+    @Test
+    public void testStartFinishedProject() throws Exception {
+        Set<Qualification> qualifications = Collections.singleton(mock(Qualification.class));
+        Project project = company.createProject("aProject", qualifications, ProjectSize.LARGE);
+        project.setStatus(ProjectStatus.FINISHED);
+        boolean result = company.start(project);
+        assertFalse(result);
+    }
+
+    @Test
+    public void testStartNullProject() {
+        assertThrows(NullPointerException.class, () -> company.start(null));
     }
 
 }
