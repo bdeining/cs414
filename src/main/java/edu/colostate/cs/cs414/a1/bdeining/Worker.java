@@ -39,7 +39,7 @@ public class Worker {
   }
 
   public String getName() {
-    return getName();
+    return name;
   }
 
   public double getSalary() {
@@ -71,7 +71,9 @@ public class Worker {
 
   @Override
   public int hashCode() {
-    return 0;
+    int result = 17;
+    result = 31 * result + name.hashCode();
+    return result;
   }
 
   /**
@@ -106,8 +108,16 @@ public class Worker {
     return 0;
   }
 
+  /**
+   * @param size
+   * @return
+   */
   public int getProjectLoad(ProjectSize size) {
-    return projects.size();
+    return projects
+        .stream()
+        .filter(project -> project.getSize().equals(size))
+        .collect(Collectors.toList())
+        .size();
   }
 
   /**
@@ -155,8 +165,16 @@ public class Worker {
     return projects;
   }
 
+  /**
+   * @param p
+   * @return
+   * @throws NullPointerException
+   */
   public boolean addProject(Project p) {
-    // TODO : Validation
+    if (p == null) {
+      throw new NullPointerException("Project was null");
+    }
+
     return projects.add(p);
   }
 
