@@ -55,9 +55,10 @@ public class WorkerTest {
             new Project("project", ProjectSize.LARGE, ProjectStatus.ACTIVE, qualificationSet),
             new Project("project2", ProjectSize.LARGE, ProjectStatus.ACTIVE, qualificationSet),
             new Project("project3", ProjectSize.LARGE, ProjectStatus.ACTIVE, qualificationSet),
-            new Project("project4", ProjectSize.LARGE, ProjectStatus.ACTIVE, qualificationSet)
+            new Project("project4", ProjectSize.LARGE, ProjectStatus.ACTIVE, qualificationSet),
+            new Project("project5", ProjectSize.LARGE, ProjectStatus.ACTIVE, qualificationSet)
           };
-      Pair<Project[], Integer> pair3 = new Pair<>(projects3, 12);
+      Pair<Project[], Integer> pair3 = new Pair<>(projects3, 15);
 
       return new Pair[] {pair, pair2, pair3};
     } catch (Exception ex) {
@@ -199,14 +200,6 @@ public class WorkerTest {
   }
 
   @Theory
-  public void testGetProjectLoad() throws Exception {
-    Project project =
-        new Project("project", ProjectSize.LARGE, ProjectStatus.ACTIVE, qualificationSet);
-    worker.addProject(project);
-    assertEquals(worker.getProjectLoad(ProjectSize.LARGE), 1);
-  }
-
-  @Theory
   public void testWillOverload(Pair<Project[], Integer> pair) throws Exception {
     Qualification qualification = new Qualification("somethingHelpful");
 
@@ -223,18 +216,5 @@ public class WorkerTest {
     } else {
       assertFalse(worker.willOverload(lastProject));
     }
-  }
-
-  @Theory
-  public void testComputeCurrentLoad(Pair<Project[], Integer> pair) throws Exception {
-    Qualification qualification = new Qualification("somethingHelpful");
-
-    Set<Qualification> qualificationSet = Collections.singleton(qualification);
-
-    Worker worker = new Worker(NAME, qualificationSet);
-    for (Project project : pair.getKey()) {
-      worker.addProject(project);
-    }
-    assertEquals(worker.computeCurrentLoad(), (int) pair.getValue());
   }
 }

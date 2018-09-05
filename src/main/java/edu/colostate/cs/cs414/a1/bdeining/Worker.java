@@ -2,6 +2,7 @@ package edu.colostate.cs.cs414.a1.bdeining;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 public class Worker {
@@ -105,46 +106,35 @@ public class Worker {
   }
 
   /** @return */
-  public int computeCurrentLoad() {
-    Set<Project> activeProjects =
-        projects
+  private int computeCurrentLoad() {
+    final AtomicInteger currentLoad = new AtomicInteger(0);
+    projects
             .stream()
             .filter(project -> project.getStatus().equals(ProjectStatus.ACTIVE))
-            .collect(Collectors.toSet());
+            .forEach(project -> currentLoad.addAndGet(getProjectLoad(project.getSize())));
 
-    int numberOfLargeProjects = 0;
-    int numberOfMediumProjects = 0;
-    int numberOfSmall = 0;
-
-    for (Project project : activeProjects) {
-      switch (project.getSize()) {
-        case LARGE:
-          numberOfLargeProjects++;
-          break;
-
-        case MEDIUM:
-          numberOfMediumProjects++;
-          break;
-
-        case SMALL:
-          numberOfSmall++;
-          break;
-      }
-    }
-
-    return (3 * numberOfLargeProjects + 2 * numberOfMediumProjects + numberOfSmall);
+    return currentLoad.get();
   }
 
   /**
    * @param size
    * @return
    */
-  public int getProjectLoad(ProjectSize size) {
-    return projects
-        .stream()
-        .filter(project -> project.getSize().equals(size))
-        .collect(Collectors.toList())
-        .size();
+  private int getProjectLoad(ProjectSize size) {
+
+    switch (size) {
+    case LARGE:
+      return 3;
+
+    case MEDIUM:
+      return 2;
+
+    case SMALL:
+      return 1;
+
+      default:
+        return 0;
+    }
   }
 
   /**
@@ -158,34 +148,10 @@ public class Worker {
    * @return true if a worker will be overloaded when assigned to the project p, false otherwise.
    */
   public boolean willOverload(Project p) {
-    Set<Project> activeProjects =
-        projects
-            .stream()
-            .filter(project -> project.getStatus().equals(ProjectStatus.ACTIVE))
-            .collect(Collectors.toSet());
-    activeProjects.add(p);
+    int currentLoad = computeCurrentLoad();
+    int tentativeSize = getProjectLoad(p.getSize());
 
-    int numberOfLargeProjects = 0;
-    int numberOfMediumProjects = 0;
-    int numberOfSmall = 0;
-
-    for (Project project : activeProjects) {
-      switch (project.getSize()) {
-        case LARGE:
-          numberOfLargeProjects++;
-          break;
-
-        case MEDIUM:
-          numberOfMediumProjects++;
-          break;
-
-        case SMALL:
-          numberOfSmall++;
-          break;
-      }
-    }
-
-    return (3 * numberOfLargeProjects + 2 * numberOfMediumProjects + numberOfSmall) > 12;
+    return (currentLoad + tentativeSize) > 12;
   }
 
   public Set<Project> getProjects() {
