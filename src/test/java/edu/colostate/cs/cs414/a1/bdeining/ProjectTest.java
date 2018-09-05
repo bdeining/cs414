@@ -48,6 +48,13 @@ public class ProjectTest {
   }
 
   @Test
+  public void testCreateProjectBlankName() {
+    assertThrows(
+        InvalidName.class,
+        () -> new Project(" ", ProjectSize.LARGE, ProjectStatus.PLANNED, qualificationSet));
+  }
+
+  @Test
   public void testCreateProjectNullQualifications() {
     assertThrows(
         NullPointerException.class,

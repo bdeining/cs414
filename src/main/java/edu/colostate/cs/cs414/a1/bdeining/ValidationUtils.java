@@ -9,7 +9,7 @@ public class ValidationUtils {
       throw new NullPointerException("Name is null");
     }
 
-    if (name.equals("") || name.contains("\\s")) {
+    if (name.equals("") || name.trim().isEmpty()) {
       throw new InvalidName("Name contained a blank character");
     }
   }
@@ -19,7 +19,7 @@ public class ValidationUtils {
       throw new NullPointerException("Description is null");
     }
 
-    if (description.equals("") || description.contains("\\s")) {
+    if (description.equals("") || description.trim().isEmpty()) {
       throw new InvalidDescription("Description contained a blank character");
     }
   }

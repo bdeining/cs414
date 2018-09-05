@@ -34,7 +34,7 @@ public class QualificationTest {
 
   @Test
   public void testInitializeBlankDescription() {
-    assertThrows(InvalidDescription.class, () -> new Qualification("desscr\\sption"));
+    assertThrows(InvalidDescription.class, () -> new Qualification(" "));
   }
 
   @Test

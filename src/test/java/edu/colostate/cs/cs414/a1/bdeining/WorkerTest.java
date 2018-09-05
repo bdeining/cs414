@@ -89,7 +89,7 @@ public class WorkerTest {
 
   @Theory
   public void testCreateWorkerBlankName() {
-    assertThrows(InvalidName.class, () -> new Worker("b\\sob", qualificationSet));
+    assertThrows(InvalidName.class, () -> new Worker(" ", qualificationSet));
   }
 
   @Theory

@@ -19,7 +19,7 @@ public class Company {
    * of at least one non-blank character.
    *
    * @param name - the name of the company
-   * @throws InvalidName when the name is empty or contains one non-blank character
+   * @throws InvalidName when the name is empty or contains only non-blank characters
    * @throws NullPointerException when the name is null
    */
   public Company(String name) throws InvalidName {

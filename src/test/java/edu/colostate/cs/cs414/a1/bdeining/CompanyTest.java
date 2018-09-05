@@ -39,7 +39,7 @@ public class CompanyTest {
 
   @Test
   public void testCompanyNameBlankCharacter() {
-    assertThrows(InvalidName.class, () -> new Company("The\\sCompany"));
+    assertThrows(InvalidName.class, () -> new Company(" "));
   }
 
   @Test
@@ -328,6 +328,8 @@ public class CompanyTest {
     company.unassignAll(worker);
     assertTrue(project.getWorkers().isEmpty());
     assertTrue(project2.getWorkers().isEmpty());
+    assertTrue(company.getUnassignedWorkers().contains(worker));
+    assertFalse(company.getAssignedWorkers().contains(worker));
   }
 
   @Test

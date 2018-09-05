@@ -104,7 +104,6 @@ public class Worker {
     return String.format("%s:%s:%s:%s", name, projects.size(), qualifications.size(), salary);
   }
 
-  /** @return */
   private int computeCurrentLoad() {
     final AtomicInteger currentLoad = new AtomicInteger(0);
     projects
@@ -115,10 +114,6 @@ public class Worker {
     return currentLoad.get();
   }
 
-  /**
-   * @param size
-   * @return
-   */
   private int getProjectLoad(ProjectSize size) {
 
     switch (size) {
@@ -143,7 +138,7 @@ public class Worker {
    * the worker makes (3*numberOfLargeProjects + 2*numberOfMediumProjects + numberOfSmall Projects)
    * greater than 12 when p becomes active, then the worker will be overloaded.
    *
-   * @param p
+   * @param p - the project to analyze
    * @return true if a worker will be overloaded when assigned to the project p, false otherwise.
    */
   public boolean willOverload(Project p) {
@@ -158,8 +153,10 @@ public class Worker {
   }
 
   /**
-   * @param p
-   * @return
+   * Adds project to the set of projects for the worker.
+   *
+   * @param p - the project to add
+   * @return true if the project was added to the worker; false otherwise
    * @throws NullPointerException
    */
   public boolean addProject(Project p) {
