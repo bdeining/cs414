@@ -11,13 +11,13 @@ import org.junit.runners.Suite;
   QualificationTest.class,
   WorkerTest.class
 })
-public class Runner {
+public class TestAll {
 
   public static void main(String args[]) {
     junit.textui.TestRunner.run(suite());
   }
 
   public static junit.framework.Test suite() {
-    return new JUnit4TestAdapter(Runner.class);
+    return new JUnit4TestAdapter(TestAll.class);
   }
 }
