@@ -3,7 +3,6 @@ package edu.colostate.cs.cs414.a1.bdeining;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
 
 public class Worker {
 
@@ -109,9 +108,9 @@ public class Worker {
   private int computeCurrentLoad() {
     final AtomicInteger currentLoad = new AtomicInteger(0);
     projects
-            .stream()
-            .filter(project -> project.getStatus().equals(ProjectStatus.ACTIVE))
-            .forEach(project -> currentLoad.addAndGet(getProjectLoad(project.getSize())));
+        .stream()
+        .filter(project -> project.getStatus().equals(ProjectStatus.ACTIVE))
+        .forEach(project -> currentLoad.addAndGet(getProjectLoad(project.getSize())));
 
     return currentLoad.get();
   }
@@ -123,14 +122,14 @@ public class Worker {
   private int getProjectLoad(ProjectSize size) {
 
     switch (size) {
-    case LARGE:
-      return 3;
+      case LARGE:
+        return 3;
 
-    case MEDIUM:
-      return 2;
+      case MEDIUM:
+        return 2;
 
-    case SMALL:
-      return 1;
+      case SMALL:
+        return 1;
 
       default:
         return 0;
