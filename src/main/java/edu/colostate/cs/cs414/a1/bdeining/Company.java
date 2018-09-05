@@ -2,6 +2,7 @@ package edu.colostate.cs.cs414.a1.bdeining;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Company {
 
@@ -10,8 +11,6 @@ public class Company {
   private Set<Worker> availableWorkers;
 
   private Set<Worker> assignedWorkers;
-
-  private Set<Worker> unassignedWorkers;
 
   private Set<Project> projects;
 
@@ -28,7 +27,6 @@ public class Company {
     this.name = name;
     this.availableWorkers = new HashSet<>();
     this.assignedWorkers = new HashSet<>();
-    this.unassignedWorkers = new HashSet<>();
     this.projects = new HashSet<>();
   }
 
@@ -45,7 +43,10 @@ public class Company {
   }
 
   public Set<Worker> getUnassignedWorkers() {
-    return unassignedWorkers;
+    return availableWorkers
+        .stream()
+        .filter(worker -> !assignedWorkers.contains(worker))
+        .collect(Collectors.toSet());
   }
 
   public Set<Project> getProjects() {
