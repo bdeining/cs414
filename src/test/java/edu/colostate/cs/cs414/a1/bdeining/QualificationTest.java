@@ -28,6 +28,11 @@ public class QualificationTest {
   }
 
   @Test
+  public void testInitializeEmptyDescription() {
+    assertThrows(InvalidDescription.class, () -> new Qualification(""));
+  }
+
+  @Test
   public void testInitializeBlankDescription() {
     assertThrows(InvalidDescription.class, () -> new Qualification("desscr\\sption"));
   }

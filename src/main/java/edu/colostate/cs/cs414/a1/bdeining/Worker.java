@@ -104,8 +104,35 @@ public class Worker {
     return String.format("%s:%s:%s:%s", name, projects.size(), qualifications.size(), salary);
   }
 
+  /** @return */
   public int computeCurrentLoad() {
-    return 0;
+    Set<Project> activeProjects =
+        projects
+            .stream()
+            .filter(project -> project.getStatus().equals(ProjectStatus.ACTIVE))
+            .collect(Collectors.toSet());
+
+    int numberOfLargeProjects = 0;
+    int numberOfMediumProjects = 0;
+    int numberOfSmall = 0;
+
+    for (Project project : activeProjects) {
+      switch (project.getSize()) {
+        case LARGE:
+          numberOfLargeProjects++;
+          break;
+
+        case MEDIUM:
+          numberOfMediumProjects++;
+          break;
+
+        case SMALL:
+          numberOfSmall++;
+          break;
+      }
+    }
+
+    return (3 * numberOfLargeProjects + 2 * numberOfMediumProjects + numberOfSmall);
   }
 
   /**

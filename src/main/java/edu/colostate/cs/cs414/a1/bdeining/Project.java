@@ -66,8 +66,8 @@ public class Project {
 
   /**
    * This operation is needed by JUnit. Note that the parameter of this method is of type Object,
-   * i.e., not equals(c : Project), etc. Two Project instances are equal iff their descriptions
-   * match. Note that it is good practice to override the hashCode method when equals is overridden.
+   * i.e., not equals(c : Project), etc. Two Project instances are equal iff their names match. Note
+   * that it is good practice to override the hashCode method when equals is overridden.
    *
    * @param obj – the reference object with which to compare.
    * @return true if this object is the same as the o argument; false otherwise.
