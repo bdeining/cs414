@@ -96,15 +96,15 @@ public class ProjectTest {
 
   @Test
   public void testNoMissingQualifications() throws Exception {
-    Worker worker = new Worker("Bob", qualificationSet);
+    Worker worker = new Worker(CompanyTest.WORKER_NAME, qualificationSet);
     project.getWorkers().add(worker);
     assertTrue(project.missingQualifications().isEmpty());
   }
 
   @Test
   public void testMissingQualifications() throws Exception {
-    Qualification qualification = new Qualification("somethingUnhelpful");
-    Worker worker = new Worker("Bob", Collections.singleton(qualification));
+    Qualification qualification = new Qualification(CompanyTest.UNHELPFUL_QUALIFICATION);
+    Worker worker = new Worker(CompanyTest.WORKER_NAME, Collections.singleton(qualification));
     project.getWorkers().add(worker);
     assertFalse(project.missingQualifications().isEmpty());
     assertTrue(project.missingQualifications().contains(this.qualification));
@@ -112,14 +112,14 @@ public class ProjectTest {
 
   @Test
   public void testIsHelpful() throws Exception {
-    Worker worker = new Worker("Bob", qualificationSet);
+    Worker worker = new Worker(CompanyTest.WORKER_NAME, qualificationSet);
     assertTrue(project.isHelpful(worker));
   }
 
   @Test
   public void testIsNotHelpful() throws Exception {
-    Qualification qualification = new Qualification("somethingUnhelpful");
-    Worker worker = new Worker("Bob", Collections.singleton(qualification));
+    Qualification qualification = new Qualification(CompanyTest.UNHELPFUL_QUALIFICATION);
+    Worker worker = new Worker(CompanyTest.WORKER_NAME, Collections.singleton(qualification));
     assertFalse(project.isHelpful(worker));
   }
 
@@ -130,7 +130,7 @@ public class ProjectTest {
 
   @Test
   public void testAddWorker() throws Exception {
-    Worker worker = new Worker("Bob", qualificationSet);
+    Worker worker = new Worker(CompanyTest.WORKER_NAME, qualificationSet);
     project.getWorkers().add(worker);
     assertTrue(project.getWorkers().contains(worker));
   }
@@ -138,7 +138,7 @@ public class ProjectTest {
   @Test
   public void testAddQualification() throws Exception {
     Qualification qualification = new Qualification("somethingMoreHelpful");
-    Worker worker = new Worker("Bob", Collections.singleton(qualification));
+    Worker worker = new Worker(CompanyTest.WORKER_NAME, Collections.singleton(qualification));
     project.addQualification(qualification);
     assertTrue(project.isHelpful(worker));
   }

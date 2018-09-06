@@ -1,0 +1,33 @@
+This program is a system of Companies, Projects, Workers and Qualifications that are based on real
+world representations.  A Company consists of Projects and Workers with Qualifications.  Projects
+are started with n amount of workers with Qualifications that contribute to the overall success of
+the project.  This program was written in Java 8 and tested with Jnit5 (using the jupiter and vintage)
+engines.  There were use cases for using Theories and DataPoints in some of the tests, which allowed
+for limited code duplication.   There is a test suite (TestAll.java) that runs both engines.
+
+Incomplete Specifications
+-------------------------
+The Qualification class adds Workers and Projects to a set per the spec, but this set is not used
+anywhere else in the code.
+
+The Company class
+
+The test suite could have been decoupled from eachother with the use of mocks.  Testing Company was
+done using concrete implementations of Projects, Qualifications and Workers.  While this still
+adequately tests the system, some loss of control was experienced and additional setup was required
+to achieve the right functionality.
+
+
+
+Issues Encountered
+------------------
+The definition of a load was loosely defined in the spec.  Based on the documentation for willOverload,
+this was assumed to be (3*numberOfLargeProjects + 2*numberOfMediumProjects + numberOfSmall Projects).
+With this assumption, computeCurrentLoad was implemented in the same fashion.
+
+
+Challenges
+----------
+There was some research required to utilize Theory and DataPoints functionality; these utilities
+require a little time and finesse to properly test various sets of data.
+

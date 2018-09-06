@@ -89,7 +89,7 @@ public class Worker {
       return false;
     }
 
-    return this.getName().equals(((Worker) obj).getName());
+    return this.name.equals(((Worker) obj).getName());
   }
 
   /**

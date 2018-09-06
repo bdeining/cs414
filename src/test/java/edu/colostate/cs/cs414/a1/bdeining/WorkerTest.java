@@ -19,8 +19,6 @@ import org.junit.runner.RunWith;
 @RunWith(Theories.class)
 public class WorkerTest {
 
-  private static final String NAME = "Bob";
-
   private static Company company;
 
   private static Worker worker;
@@ -36,27 +34,27 @@ public class WorkerTest {
 
       Project[] projects =
           new Project[] {
-            new Project("project", ProjectSize.LARGE, ProjectStatus.ACTIVE, qualificationSet),
-            new Project("project2", ProjectSize.MEDIUM, ProjectStatus.ACTIVE, qualificationSet),
-            new Project("project3", ProjectSize.SMALL, ProjectStatus.ACTIVE, qualificationSet),
-            new Project("project4", ProjectSize.LARGE, ProjectStatus.ACTIVE, qualificationSet)
+            new Project(CompanyTest.PROJECT_NAME, ProjectSize.LARGE, ProjectStatus.ACTIVE, qualificationSet),
+            new Project(CompanyTest.PROJECT_NAME + "2", ProjectSize.MEDIUM, ProjectStatus.ACTIVE, qualificationSet),
+            new Project(CompanyTest.PROJECT_NAME + "3", ProjectSize.SMALL, ProjectStatus.ACTIVE, qualificationSet),
+            new Project(CompanyTest.PROJECT_NAME + "4", ProjectSize.LARGE, ProjectStatus.ACTIVE, qualificationSet)
           };
       Pair<Project[], Integer> pair = new Pair<>(projects, 9);
 
       Project[] projects2 =
           new Project[] {
-            new Project("project", ProjectSize.LARGE, ProjectStatus.ACTIVE, qualificationSet),
-            new Project("project4", ProjectSize.LARGE, ProjectStatus.ACTIVE, qualificationSet)
+            new Project(CompanyTest.PROJECT_NAME, ProjectSize.LARGE, ProjectStatus.ACTIVE, qualificationSet),
+            new Project(CompanyTest.PROJECT_NAME + "2", ProjectSize.LARGE, ProjectStatus.ACTIVE, qualificationSet)
           };
       Pair<Project[], Integer> pair2 = new Pair<>(projects2, 6);
 
       Project[] projects3 =
           new Project[] {
-            new Project("project", ProjectSize.LARGE, ProjectStatus.ACTIVE, qualificationSet),
-            new Project("project2", ProjectSize.LARGE, ProjectStatus.ACTIVE, qualificationSet),
-            new Project("project3", ProjectSize.LARGE, ProjectStatus.ACTIVE, qualificationSet),
-            new Project("project4", ProjectSize.LARGE, ProjectStatus.ACTIVE, qualificationSet),
-            new Project("project5", ProjectSize.LARGE, ProjectStatus.ACTIVE, qualificationSet)
+            new Project(CompanyTest.PROJECT_NAME, ProjectSize.LARGE, ProjectStatus.ACTIVE, qualificationSet),
+            new Project(CompanyTest.PROJECT_NAME + "2", ProjectSize.LARGE, ProjectStatus.ACTIVE, qualificationSet),
+            new Project(CompanyTest.PROJECT_NAME + "3", ProjectSize.LARGE, ProjectStatus.ACTIVE, qualificationSet),
+            new Project(CompanyTest.PROJECT_NAME + "4", ProjectSize.LARGE, ProjectStatus.ACTIVE, qualificationSet),
+            new Project(CompanyTest.PROJECT_NAME + "5", ProjectSize.LARGE, ProjectStatus.ACTIVE, qualificationSet)
           };
       Pair<Project[], Integer> pair3 = new Pair<>(projects3, 15);
 
@@ -69,10 +67,10 @@ public class WorkerTest {
 
   @BeforeClass
   public static void setup() throws Exception {
-    qualification = new Qualification("somethingHelpful");
+    qualification = new Qualification(CompanyTest.HELPFUL_QUALIFICATION);
     qualificationSet = new HashSet<>();
     qualificationSet.add(qualification);
-    worker = new Worker(NAME, qualificationSet);
+    worker = new Worker(CompanyTest.WORKER_NAME, qualificationSet);
     company = new Company("Amazon");
     worker.setCompany(company);
   }
@@ -94,17 +92,17 @@ public class WorkerTest {
 
   @Theory
   public void testCreateWorkerEmptyQualifications() {
-    assertThrows(InvalidQualification.class, () -> new Worker(NAME, Collections.emptySet()));
+    assertThrows(InvalidQualification.class, () -> new Worker(CompanyTest.WORKER_NAME, Collections.emptySet()));
   }
 
   @Theory
   public void testCreateWorkerNullQualifications() {
-    assertThrows(NullPointerException.class, () -> new Worker(NAME, null));
+    assertThrows(NullPointerException.class, () -> new Worker(CompanyTest.WORKER_NAME, null));
   }
 
   @Theory
   public void testName() {
-    assertEquals(worker.getName(), NAME);
+    assertEquals(worker.getName(), CompanyTest.WORKER_NAME);
   }
 
   @Theory
@@ -127,12 +125,12 @@ public class WorkerTest {
 
   @Theory
   public void testAddQualification() throws Exception {
-    Qualification qualification = new Qualification("somethingHelpful");
+    Qualification qualification = new Qualification(CompanyTest.HELPFUL_QUALIFICATION);
 
     Set<Qualification> qualificationSet = new HashSet<>();
     qualificationSet.add(qualification);
 
-    Worker worker = new Worker(NAME, qualificationSet);
+    Worker worker = new Worker(CompanyTest.WORKER_NAME, qualificationSet);
 
     Qualification anotherQualification = new Qualification("anotherQualification");
     boolean result = worker.addQualification(anotherQualification);
@@ -154,7 +152,7 @@ public class WorkerTest {
 
   @Theory
   public void testEquals() throws Exception {
-    Worker anotherWorker = new Worker(NAME, qualificationSet);
+    Worker anotherWorker = new Worker(CompanyTest.WORKER_NAME, qualificationSet);
     assertEquals(worker, anotherWorker);
   }
 
@@ -171,7 +169,7 @@ public class WorkerTest {
 
   @Theory
   public void testToString() {
-    assertTrue(worker.toString().contains(NAME));
+    assertTrue(worker.toString().contains(CompanyTest.WORKER_NAME));
   }
 
   @Theory
@@ -181,14 +179,14 @@ public class WorkerTest {
 
   @Theory
   public void testAddProject() throws Exception {
-    Qualification qualification = new Qualification("somethingHelpful");
+    Qualification qualification = new Qualification(CompanyTest.HELPFUL_QUALIFICATION);
 
     Set<Qualification> qualificationSet = Collections.singleton(qualification);
 
-    Worker worker = new Worker(NAME, qualificationSet);
+    Worker worker = new Worker(CompanyTest.WORKER_NAME, qualificationSet);
 
     Project project =
-        new Project("project", ProjectSize.LARGE, ProjectStatus.ACTIVE, qualificationSet);
+        new Project(CompanyTest.PROJECT_NAME , ProjectSize.LARGE, ProjectStatus.ACTIVE, qualificationSet);
     worker.addProject(project);
     assertEquals(worker.getProjects().size(), 1);
     assertTrue(worker.getProjects().contains(project));
@@ -201,11 +199,11 @@ public class WorkerTest {
 
   @Theory
   public void testWillOverload(Pair<Project[], Integer> pair) throws Exception {
-    Qualification qualification = new Qualification("somethingHelpful");
+    Qualification qualification = new Qualification(CompanyTest.HELPFUL_QUALIFICATION);
 
     Set<Qualification> qualificationSet = Collections.singleton(qualification);
 
-    Worker worker = new Worker(NAME, qualificationSet);
+    Worker worker = new Worker(CompanyTest.WORKER_NAME, qualificationSet);
     for (Project project : pair.getKey()) {
       worker.addProject(project);
     }
