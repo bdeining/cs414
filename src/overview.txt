@@ -35,3 +35,7 @@ require a little time and finesse to properly test various sets of data.
 Because mocks were not used, some of the unit tests required more time to set up properly to match
 conditions in the system.
 
+The amount of validation for name and description strings ultimately resulted in a considerable amount
+of code duplication.  Extracting this validation into a common utility made the code cleaner and more
+readable.
+
