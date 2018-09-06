@@ -10,14 +10,15 @@ Incomplete Specifications
 The Qualification class adds Workers and Projects to a set per the spec, but this set is not used
 anywhere else in the code.
 
-The Company class
+The definition of equality for all of the classes in the system are defined as equal if they match
+either a name or a description.  This requires all of the names or descriptions in the system to be
+unique.  This constraint could likely be relaxed if equality also considered the set of Workers,
+Projects or Qualifications that are stored on the objects.
 
-The test suite could have been decoupled from eachother with the use of mocks.  Testing Company was
+The test suite could have been decoupled from each other with the use of mocks.  Testing Company was
 done using concrete implementations of Projects, Qualifications and Workers.  While this still
 adequately tests the system, some loss of control was experienced and additional setup was required
 to achieve the right functionality.
-
-
 
 Issues Encountered
 ------------------
@@ -30,4 +31,7 @@ Challenges
 ----------
 There was some research required to utilize Theory and DataPoints functionality; these utilities
 require a little time and finesse to properly test various sets of data.
+
+Because mocks were not used, some of the unit tests required more time to set up properly to match
+conditions in the system.
 
